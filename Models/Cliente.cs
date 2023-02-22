@@ -34,6 +34,20 @@ namespace Models
             return this;
         }
 
+        public static void Excluir(int id)
+        {
+            db = new DBContexto();
+            var cliente = db.Clientes.Where(c => c.Id == id).First();
+            db.Clientes.Remove(cliente);
+            db.SaveChanges();
+        }
+
+        public static Cliente BuscaPorId(int id)
+        {
+            db = new DBContexto();
+            return db.Clientes.Where(c => c.Id == id).First();
+        }
+
         public static List<Cliente> Todos()
         {
             return db.Clientes.ToList();

@@ -27,12 +27,26 @@ namespace APIAulaYoutube.Controllers
             return cliente.Salvar();
         }
 
+        [HttpGet]
+        [Route("{id}")]
+        public Cliente Atualizar(int id)
+        {
+            return Cliente.BuscaPorId(id);
+        }
+
         [HttpPut]
         [Route("{id}")]
         public Cliente Atualizar(int id, [FromBody] Cliente cliente)
         {
             cliente.Id = id;
             return cliente.Salvar();
+        }
+
+        [HttpDelete]
+        [Route("{id}")]
+        public void Excluir(int id)
+        {
+            Cliente.Excluir(id);
         }
     }
 }
